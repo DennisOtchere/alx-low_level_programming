@@ -8,7 +8,7 @@ int main(void)
 {
 	int dig1;
 
-	for (dig1 = 0; dig1 < 10; dig1++)
+	for (dig1 = 0; dig1 <= 9; dig1++)
 	{
 		putchar(dig1 + '0');
 		putchar(',');
