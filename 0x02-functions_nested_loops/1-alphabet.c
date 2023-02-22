@@ -2,15 +2,23 @@
 #include "main.h"
 
 /**
-  * main - entry point
-  * Description: a function that prints the alphabet, in lowercase,
-  * followed by a new line.
-  * Return: 0 (Success)
+  * print_alphabet - Prints the lowercase alphabet
+  *followed by a newline character.
+  *
+  * Description: This function prints
+  *the letters 'a' through 'z' to the console, in
+  * lowercase, followed by a newline
+  *character to move the cursor to the next line.
+  *
+  * Return: void (no return value)
 */
-
-int main(void)
+void print_alphabet(void)
 {
-	print_alphabet();
-	return (0);
+	int alph;
 
+	for (alph = 'a'; alph <= 'z'; alph++)
+	{
+		_putchar(alph);
+	}
+	_putchar('\n');
 }
