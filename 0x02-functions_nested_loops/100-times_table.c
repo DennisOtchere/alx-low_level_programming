@@ -1,8 +1,8 @@
 #include "main.h"
 /**
   * print_times_table - prints times table of any argument
-  * except n > 15 and n < 0
-  * @n: argument to pass
+  * except num > 15 and num < 0
+  * @num: argument to pass
 */
 void print_times_table(int num)
 {
