@@ -24,7 +24,7 @@ int main(int argc, __attribute__((unused))char *argv[])
 		}
 		sum += atoi(argv[index]);
 	}
-	if (sum > 0)
+	if (sum != 0)
 		printf("%d\n", sum);
 	return (0);
 }
