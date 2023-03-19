@@ -14,22 +14,17 @@ int main(int argc, __attribute__((unused))char *argv[])
 	sum = 0;
 
 	if (argc == 1)
-	{
 		printf("0\n");
-	}
-	else
+	for (index = 1; index < argc; index++)
 	{
-		for (index = 1; index < argc; index++)
+		if (!atoi(argv[index]))
 		{
-			if (!atoi(argv[index]))
-			{
-				printf("Error\n");
-				return (1);
-			}
-			else
-				sum += atoi(argv[index]);
+			printf("Error\n");
+			return (1);
 		}
-		printf("%d\n", sum);
+		sum += atoi(argv[index]);
 	}
+	if (sum > 0)
+		printf("%d\n", sum);
 	return (0);
 }
