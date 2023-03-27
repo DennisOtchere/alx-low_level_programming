@@ -1,54 +1,52 @@
-#include "main.h"
 #include <stdlib.h>
 #include <string.h>
-
+#include <ctype.h>
 /**
- * strtow - Split a string into words.
- *
- * @str: The string to split.
- *
- * Return: A pointer to an array of strings.
+ * strtow - function that splits a string into words.
+ * @str: string to be split into words
+ * Return: Pointer to the array of words of the string on success
  */
 char **strtow(char *str)
 {
-	char **words;
-	int i, j, k, len = 0, word_count = 0;
-
-	if (str == NULL || strcmp(str, "") == 0 || strcmp(str, " ") == 0)
+	if (str == NULL || *str == '\0')
 		return (NULL);
+	int num_of_words = 0;
 
-	for (i = 0; str[i] != '\0'; i++)
+	for (int i = 0; str[i] != '\0'; i++)
 	{
-		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
-			word_count++;
+		if (isalpha(str[i]) && (i == 0 || !isalpha(str[i - 1])))
+			num_of_words++;
 	}
+	char **words = malloc(sizeof(char *) * (num_of_words + 1));
 
-	words = malloc(sizeof(char *) * (word_count + 1));
 	if (words == NULL)
 		return (NULL);
+	int word_index = 0;
 
-	for (i = 0, k = 0; str[i] != '\0'; i++)
+	for (int i = 0; str[i] != '\0'; i++)
 	{
-		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
+		if (isalpha(str[i]) && (i == 0 || !isalpha(str[i - 1])))
 		{
-			for (j = i, len = 0; str[j] != ' ' && str[j] != '\0'; j++)
-				len++;
+			int word_len = 0;
 
-			words[k] = malloc(sizeof(char) * (len + 1));
-			if (words[k] == NULL)
+			while (isalpha(str[i + word_len]))
+				word_len++;
+
+			words[word_index] = malloc(sizeof(char) * (word_len + 1));
+			if (words[word_index] == NULL)
 			{
-				for (j = 0; j < k; j++)
+				for (int j = 0; j < word_index; j++)
 					free(words[j]);
 				free(words);
 				return (NULL);
 			}
-			strncpy(words[k], &str[i], len);
-			words[k][len] = '\0';
-			k++;
-			i = j;
+			strncpy(words[word_index], &str[i], word_len);
+			words[word_index][word_len] = '\0';
+			word_index++;
+			i += word_len - 1;
 		}
 	}
-	words[k] = NULL;
+	words[word_index] = NULL;
 	return (words);
 }
 
