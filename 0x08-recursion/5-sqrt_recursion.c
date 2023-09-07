@@ -37,7 +37,7 @@ int _sqrt_recursion(int n)
 	int result;
 
 	if (n <= 0)
-		return (n);
+		return (-1);
 	if (n == 1)
 		return (1);
 	result = sqrt_algorithm(n, 0);
